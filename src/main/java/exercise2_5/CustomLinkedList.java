@@ -1,4 +1,4 @@
-package exercise2;
+package exercise2_5;
 
 import java.util.Iterator;
 
@@ -52,8 +52,7 @@ public class CustomLinkedList<Y> implements CustomList<Y>{
       Node head;
       Node current;
 
-
-        public MyIterator(Node head) {
+      public MyIterator(Node head) {
             this.head = head;
         }
 
@@ -68,6 +67,7 @@ public class CustomLinkedList<Y> implements CustomList<Y>{
             return current!=null ? current.data : null;
         }
     }
+
     public void forEachTo(Y data){
         Iterator<Y> iter = this.iterator();
         while (iter.hasNext()){
@@ -77,6 +77,7 @@ public class CustomLinkedList<Y> implements CustomList<Y>{
             }
         }
     }
+
     public void forEachAfter(Y data){
         Iterator<Y> iter = this.iterator();
         int var = 0;
@@ -162,6 +163,7 @@ public class CustomLinkedList<Y> implements CustomList<Y>{
         }
         System.out.println("Совпадение присутствует " + count + " раз(а)");
     }
+
     public void replaceAll(Y data){
         Node currentNode = head;
         head.data = data;
@@ -171,7 +173,6 @@ public class CustomLinkedList<Y> implements CustomList<Y>{
             currentNode.data = data;
         }
     }
-
 
     public void remove(Y data) {
         Node currentNode = head;

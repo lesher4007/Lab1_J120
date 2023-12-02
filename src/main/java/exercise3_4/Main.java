@@ -2,6 +2,7 @@ package exercise3_4;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +15,7 @@ public class Main {
         Student.Graduate student4 = new Student.Graduate("Ronald", "Correa", GenderType.M, "Computer science", "Design of a functional programming language");
         Person person = new Person("Enrico", "Chivaldori", GenderType.M, "Computer science" );
 
-        Collection<Person> collectionPerson = new LinkedList<>();
+        List<Person> collectionPerson = new LinkedList<>();
 
         collectionPerson.add(teacher1);
         collectionPerson.add(teacher2);
@@ -27,15 +28,17 @@ public class Main {
         Person.printCollection(collectionPerson);
         System.out.println("---------------------------------------------------");
 
-        Collection<Student> collectionStudent = new LinkedList<>();
+        List<Student> collectionStudent = new LinkedList<>();
 
         collectionStudent.add(student3);
         collectionStudent.add(student4);
 
         Person.printCollection(collectionStudent);
+        Student.addStudents(collectionPerson);
+        Person.printCollection(collectionPerson);
 
-        Student.addToCollection(collectionStudent);
-        
+
+
 
 
 

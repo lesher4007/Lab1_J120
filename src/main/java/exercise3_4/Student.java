@@ -1,6 +1,7 @@
 package exercise3_4;
 
 import java.util.Collection;
+import java.util.List;
 
 public class Student extends Person{
 
@@ -33,7 +34,7 @@ public class Student extends Person{
         }
 
         public enum Course{
-            I,III
+            I,II,III
         }
 
         public void setStage(Stage stage) {
@@ -96,9 +97,21 @@ public class Student extends Person{
             this.dissertationTopic = dissertationTopic;
         }
     }
-    static public <T> void addToCollection(Collection<T> collection) {
+    static void addStudents(List<? super Student> collection) {
+
+        Student student1 = new Student.BachelorAndMaster("Leo", "Wilkinson", GenderType.M, "Computer science", Student.BachelorAndMaster.Stage.BACHELOR, Student.BachelorAndMaster.Course.III);
+        Student student2 = new Student.BachelorAndMaster("Mary", "Smith", GenderType.F, "World economy", Student.BachelorAndMaster.Stage.BACHELOR, Student.BachelorAndMaster.Course.II);
+        Student student3 = new Student.BachelorAndMaster("Sara", "Parker", GenderType.M, "Jurisprudence", Student.BachelorAndMaster.Stage.BACHELOR, Student.BachelorAndMaster.Course.III);
+        Student student4 = new Student.BachelorAndMaster("Jack", "Brown", GenderType.M, "Jurisprudence", Student.BachelorAndMaster.Stage.BACHELOR, Student.BachelorAndMaster.Course.II);
+        Student student5 = new Student.BachelorAndMaster("Michael", "Jackson", GenderType.M, "World economy", Student.BachelorAndMaster.Stage.BACHELOR, Student.BachelorAndMaster.Course.I);
+
+        collection.add(student1);
+        collection.add(student2);
+        collection.add(student3);
+        collection.add(student4);
+        collection.add(student5);
 
 
     }
 
-    }
+}

@@ -1,6 +1,7 @@
-package exercise2;
+package exercise2_5;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class DoublyLinkedList<Y> implements CustomList<Y> {
     private Node head;
@@ -39,6 +40,7 @@ public class DoublyLinkedList<Y> implements CustomList<Y> {
         sb.append("]");
         return sb.toString();
     }
+
     public String reverstoString() {
         Node currentNode = tail;
         StringBuilder sb = new StringBuilder("[");
@@ -52,11 +54,11 @@ public class DoublyLinkedList<Y> implements CustomList<Y> {
     }
 
     @Override
-    public Iterator<Y> iterator() {
+    public ListIterator<Y> iterator() {
         return new MyIterator(head);
     }
 
-    private class MyIterator implements Iterator{
+    private class MyIterator implements ListIterator{
 
         Node head;
         Node current;
@@ -64,6 +66,7 @@ public class DoublyLinkedList<Y> implements CustomList<Y> {
 
         public MyIterator(Node head) {
             this.head = head;
+
         }
 
         @Override
@@ -73,8 +76,107 @@ public class DoublyLinkedList<Y> implements CustomList<Y> {
         }
 
         @Override
+        public boolean hasPrevious(){
+            current = current==null ? tail : current.prev;
+            return current!=null;
+        }
+
+        @Override
+        public Object previous() {
+            return current!=null ? current.data : null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void set(Object o) {
+
+        }
+
+        @Override
+        public void add(Object o) {
+
+        }
+
+        @Override
         public Y next() {
             return current!=null ? current.data : null;
+        }
+    }
+
+    public void forEachRev(){
+        ListIterator<Y> iter = this.iterator();
+        while (iter.hasPrevious()){
+            System.out.println(iter.previous());
+            }
+    }
+
+    public void forEachTo(Y data){
+        Iterator<Y> iter = this.iterator();
+        while (iter.hasNext()){
+            System.out.println(iter.next());
+            if(iter.next()==data){
+                break;
+            }
+        }
+    }
+
+    public void TailForEachTo(Y data){
+        ListIterator<Y> iter = this.iterator();
+        while (iter.hasPrevious()){
+            System.out.println(iter.previous());
+            if(iter.previous()==data){
+                break;
+            }
+        }
+    }
+
+    public void forEachAfter(Y data){
+        Iterator<Y> iter = this.iterator();
+        int var = 0;
+        while (iter.hasNext()){
+            iter.next();
+            if(iter.next()==data){
+                System.out.println(iter.next());
+                var++;
+                break;
+            }
+        }
+        if(var == 1){
+            while (iter.hasNext()){
+                System.out.println(iter.next());
+            }
+        }
+    }
+
+    public void TailForEachAfter(Y data){
+        ListIterator<Y> iter = this.iterator();
+        int var = 0;
+        while (iter.hasPrevious()){
+            iter.previous();
+            if(iter.previous()==data){
+                System.out.println(iter.previous());
+                var++;
+                break;
+            }
+        }
+        if(var == 1){
+            while (iter.hasPrevious()){
+                System.out.println(iter.previous());
+            }
         }
     }
 
@@ -233,6 +335,7 @@ public class DoublyLinkedList<Y> implements CustomList<Y> {
             currentNode = currentNode.next;
         }
     }
+
     public void addLinkedList(DoublyLinkedList list){
         if(head == null){return;}
         Node currentNode = list.tail;
